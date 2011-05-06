@@ -5,7 +5,7 @@
     	The following strings needs to be defined in order for the Plugin to function.
     -->
     <string name="pluginname">Call Log</string>
-    <string name="intent_preferences">com.xxx.yyy.liveview.plugins.calllog.PREFERENCES</string>
-    <string name="intent_service">com.xxx.yyy.liveview.plugins.calllog.calllogservice</string>
-    <string name="application_description"></string>
+    <string name="intent_preferences">com.sonyericsson.extras.liveview.plugins.CallLog.PREFERENCES</string>
+    <string name="intent_service">com.sonyericsson.extras.liveview.plugins.CallLog.calllogservice</string>
+    <string name="application_description">Extends:com.sonyericsson.extras.liveview</string>
 </resources>
