@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Call Log</string>
+    <!-- 
+    	The following strings needs to be defined in order for the Plugin to function.
+    -->
+    <string name="pluginname">Call Log</string>
+    <string name="intent_preferences">com.xxx.yyy.liveview.plugins.calllog.PREFERENCES</string>
+    <string name="intent_service">com.xxx.yyy.liveview.plugins.calllog.calllogservice</string>
+    <string name="application_description"></string>
+</resources>
