@@ -72,7 +72,7 @@ public class CallLogService extends AbstractPluginService {
 			//Log.d(PluginConstants.LOG_TAG, str);
 			type = cursor.getInt(2);
 			CallLogs[i].setType(type);
-			
+			 
 			SimpleDateFormat sfd = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 			date = new Date(Long.parseLong(cursor.getString(3)));
 			time = sfd.format(date);
