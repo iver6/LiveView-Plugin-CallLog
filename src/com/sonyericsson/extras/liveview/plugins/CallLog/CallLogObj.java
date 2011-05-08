@@ -10,7 +10,7 @@ public class CallLogObj {
 	}
 	public String getPhoneNunber() {
 		return PhoneNunber;
-	}
+	} 
 	public void setName(String name) {
 		if(name != null)
 			Name = name;
