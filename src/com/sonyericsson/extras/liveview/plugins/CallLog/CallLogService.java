@@ -23,17 +23,26 @@
 
 package com.sonyericsson.extras.liveview.plugins.CallLog;
 
+import java.text.SimpleDateFormat;
+import java.util.Arrays;
+import java.util.Date;
+
 import com.sonyericsson.extras.liveview.plugins.AbstractPluginService;
 import com.sonyericsson.extras.liveview.plugins.PluginConstants;
 
 import android.content.ComponentName;
+import android.content.ContentResolver;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.os.IBinder;
+import android.provider.CallLog;
 import android.util.Log;
 
 public class CallLogService extends AbstractPluginService {
 	
+	private CallLogObj [] CallLogs;
+
 	@Override
 	public void onStart(Intent intent, int startId) {
 		super.onStart(intent, startId);
@@ -41,6 +50,37 @@ public class CallLogService extends AbstractPluginService {
 		// ... 
 		// Do plugin specifics.
 		// ...
+		
+		String str ;
+        int type;
+        //long callTime;
+        Date date;
+        String time= "";
+        ContentResolver cr = getContentResolver();
+        final Cursor cursor = cr.query(CallLog.Calls.CONTENT_URI, new String[]{CallLog.Calls.NUMBER,CallLog.Calls.CACHED_NAME,CallLog.Calls.TYPE, CallLog.Calls.DATE}, null, null,CallLog.Calls.DEFAULT_SORT_ORDER);
+        
+        CallLogs = new CallLogObj[cursor.getCount()];
+        Log.d(PluginConstants.LOG_TAG, "Calllog Num IS :" + cursor.getCount());
+        for (int i = 0; i < cursor.getCount(); i++) {   
+			cursor.moveToPosition(i);
+			//str = cursor.getString(0);				//µç»°ºÅÂë
+			CallLogs[i].setPhoneNunber(cursor.getString(0));
+			
+			str = cursor.getString(1);
+			CallLogs[i].setName(str);
+			
+			//Log.d(PluginConstants.LOG_TAG, str);
+			type = cursor.getInt(2);
+			CallLogs[i].setType(type);
+			
+			SimpleDateFormat sfd = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+			date = new Date(Long.parseLong(cursor.getString(3)));
+			time = sfd.format(date);
+			CallLogs[i].setDate(time);
+        }
+ 
+
+
 	}
 	
 	@Override
@@ -183,3 +223,5 @@ public class CallLogService extends AbstractPluginService {
     }
 			
 }
+
+
